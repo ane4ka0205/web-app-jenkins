@@ -39,5 +39,10 @@ pipeline {
         //         sh """npm test"""
         //     }
         // }
+        stage('Cypress Tests'){
+            steps{
+                sh """npm run cypress:test"""
+            }
+        }
     }
 }
