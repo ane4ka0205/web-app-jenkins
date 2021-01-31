@@ -12,12 +12,12 @@ pipeline {
                 app_tar = 'dniweb.tar'
                 environment = 'test'
             }
-            when {
-                allOf {
-                    branch 'test'
-                    // environment name: 'DEPLOY_TO', value: 'test'
-                }
-            }
+            // when {
+            //     allOf {
+            //         branch 'test'
+            //         // environment name: 'DEPLOY_TO', value: 'test'
+            //     }
+            // }
             steps {
                 sh """echo "Build branch: ${environment} workspace: ${WORKSPACE}"
                 echo "PATH=$PATH"
@@ -37,10 +37,10 @@ pipeline {
                 ls ${WORKSPACE}/${environment}"""
             }
         }
-        // stage('Unit Tests'){
-        //     steps{
-        //         sh """npm test"""
-        //     }
-        // }
+        stage('Unit Tests'){
+            steps{
+                sh """npm test"""
+            }
+        }
     }
 }
