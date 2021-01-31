@@ -34,10 +34,10 @@ pipeline {
                 ls ${WORKSPACE}/${environment}"""
             }
         }
-        stage('Unit Tests'){
-            steps{
-                sh """npm test"""
-            }
-        }
+        // stage('Unit Tests'){
+        //     steps{
+        //         sh """npm test"""
+        //     }
+        // }
     }
 }
