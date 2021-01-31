@@ -25,9 +25,6 @@ pipeline {
                 npm --version
                 node --version
                 npm install
-                npm install -g typescript
-                npm run typecheck
-                npm run lint
                 mkdir -p ${environment}
                 rm -rf ${environment}/${app_tar}
                 mkdir -p ./dist
