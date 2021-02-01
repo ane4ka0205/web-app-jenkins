@@ -37,9 +37,9 @@ node("master") {
     }
 
     stage("Cypress Tests ${environment}") {
-        node("cypress/included:5.2.0") {
+        
             cypressTests()
-			}
+			
 		}
         currentBuild.result = 'SUCCESS'
     }catch (Exception err) {
