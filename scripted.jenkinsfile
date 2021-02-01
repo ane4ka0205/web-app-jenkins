@@ -48,4 +48,5 @@ node("any") {
 		if (currentBuild.result == 'SUCCESS') {
 			echo "email notification is skipped - sent already as a part of deployment"
 		}
+    }
 }
