@@ -8,7 +8,7 @@
         "typecheck": "tsc --noEmit --rootDir src/",
         "lint:withtypecheck": "npm run typecheck && npm run lint",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "cypress:test": "cypress run --headless --browser chrome --spec \"cypress/integration/test/*\""
+        "cypress:test": "cypress run --headless --browser electron --spec \"cypress/integration/test/*\""
     },
     "repository": {
         "type": "git",
