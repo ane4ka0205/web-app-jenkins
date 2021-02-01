@@ -41,11 +41,10 @@ node("master") {
         buildTar(environment)
     }
 
-    stage("Cypress Tests ${environment}") {
-        
-            cypressTests()
-			
-		}
+    stage("Cypress Tests ${environment}") {    
+        cypressTests()		
+	}
+    
         currentBuild.result = 'SUCCESS'
     }catch (Exception err) {
         currentBuild.result = 'FAILURE'
