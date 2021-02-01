@@ -41,7 +41,9 @@ pipeline {
         // }
         stage('Cypress Tests'){
             steps{
-                sh """npm run cypress:test"""
+                sh """
+                ldd /var/lib/jenkins/.cache/Cypress/6.3.0/Cypress/Cypress | grep 'not found'
+                npm run cypress:test"""
             }
         }
     }
