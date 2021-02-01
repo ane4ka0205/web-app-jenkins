@@ -43,7 +43,7 @@ pipeline {
             steps{
                 sh """
                 
-                
+                npm install cypress --save-dev
                 npm run cypress:test"""
             }
         }
