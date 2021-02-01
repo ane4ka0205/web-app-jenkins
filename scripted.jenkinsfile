@@ -20,13 +20,11 @@ def buildTar(String config){
 }
 
 def cypressTests() {
-	docker.withRegistry('https://hub.docker.com', 'AAF') {
-		docker.image('cypress/included:5.2.0').inside {		
-            sh """
-            npm install cypress --save-dev
-            npm run cypress:test
-            """
-		}
+    docker.image('cypress/included:5.2.0').inside {		
+        sh """
+        npm install cypress --save-dev
+        npm run cypress:test
+        """
 	}
 }
 
@@ -44,7 +42,7 @@ node("master") {
     stage("Cypress Tests ${environment}") {    
         cypressTests()		
 	}
-    
+
         currentBuild.result = 'SUCCESS'
     }catch (Exception err) {
         currentBuild.result = 'FAILURE'
