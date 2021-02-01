@@ -42,7 +42,7 @@ pipeline {
         stage('Cypress Tests'){
             steps{
                 sh """
-                yum install -y gtk3-devel
+                sudo yum install -y gtk3-devel
                 ldd /var/lib/jenkins/.cache/Cypress/6.3.0/Cypress/Cypress | grep 'not found'
                 npm run cypress:test"""
             }
