@@ -1,7 +1,7 @@
 environment = "test"
 app_tar = 'dniweb.tar'
 
-def BuildTar(String config){
+def buildTar(String config){
     sh """
     echo "Build branch: ${environment} workspace: ${WORKSPACE}"
     echo "PATH=$PATH"
@@ -19,7 +19,7 @@ def BuildTar(String config){
     """
 }
 
-def CypressTests(){
+def cypressTests(){
     sh """
     npm install cypress --save-dev
     npm run cypress:test
