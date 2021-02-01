@@ -1,0 +1,51 @@
+environment = "test"
+app_tar = 'dniweb.tar'
+
+def BuildTar(String config){
+    sh """
+    echo "Build branch: ${environment} workspace: ${WORKSPACE}"
+    echo "PATH=$PATH"
+    pwd
+    npm --version
+    node --version
+    npm install
+    mkdir -p ${environment}
+    rm -rf ${environment}/${app_tar}
+    mkdir -p ./dist
+    chmod 755 ./dist
+    cd ./dist
+    tar cvf ../${environment}/${app_tar} ./
+    ls ${WORKSPACE}/${environment}
+    """
+}
+
+def CypressTests(){
+    sh """
+    npm install cypress --save-dev
+    npm run cypress:test
+    """
+}
+
+node("any") {
+    properties([disableConcurrentBuilds()])
+    try{
+    checkout scm
+
+	commitMessages = sh(returnStdout: true, script: "git log -1 --pretty=--%ar--%cN--%B").trim().replaceAll("\n","<br>").replaceAll("\r","")
+    stage("Build ${environment}") {
+        buildTar(environment)
+    }
+
+    stage("Cypress Tests ${environment}") {
+        node("cypress/included:5.2.0") {
+            cypressTests()
+			}
+		}
+        currentBuild.result = 'SUCCESS'
+    }catch (Exception err) {
+        currentBuild.result = 'FAILURE'
+    } finally {
+		if (currentBuild.result == 'SUCCESS') {
+			echo "email notification is skipped - sent already as a part of deployment"
+		}
+}
