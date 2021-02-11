@@ -33,7 +33,7 @@ def cypressTests(){
     npm install cypress --save-dev
     npm run cypress:test
     """
-
+}
 
 node("master") {
     properties([disableConcurrentBuilds()])
