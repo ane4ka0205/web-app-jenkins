@@ -23,7 +23,8 @@ def cypressTests() {
         docker.withRegistry('https://registry.hub.docker.com/', 'AAF') {
             docker.image('cypress/included:5.2.0').inside("-e HOME=$WORKSPACE --entrypoint=''") {		
                 sh """
-                npm run cypress:test
+                env
+                echo 'hello world'
                 """
         }
 	}
@@ -34,6 +35,7 @@ def cypressTests() {
 //     npm run cypress:test
 //     """
 // }
+                // npm run cypress:test
                 // npm install cypress --save-dev
 
 node("master") {
