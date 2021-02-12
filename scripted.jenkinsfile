@@ -20,7 +20,7 @@ def buildTar(String config){
 }
 
 def cypressTests() {
-        docker.withRegistry('https://hub.docker.com/', 'AAF') {
+        docker.withRegistry('https://registry.hub.docker.com/', 'AAF') {
             docker.image('cypress/included:5.2.0').inside("-e HOME=$WORKSPACE --entrypoint=''") {		
                 sh """
                 npm run cypress:test
